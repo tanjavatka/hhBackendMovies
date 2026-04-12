@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> New Movie Review </title>
+</head>
+
+<body>
+  <h3> New Movie Review </h3>
+
+  <form th:object="${moviereview}" th:action="@{/savereview}" action="#" method="post">
+
+    <select name="movieId">
+      <option value=""> -- Select movie -- </option>
+      <option th:each="movie : ${movies}" th:value="${movie.movieId}" th:text="${movie.title}">
+      </option>
+    </select>
+    <br>
+    <a th:href="@{/addmovie}">Movie not found? Add new</a>
+
+    <br>
+    <!-- <div>
+      <input type="text" id="title" th:field="${moviereview.movie.title}" placeholder="Movie Title">
+    </div>
+
+    <div>
+      <input type="text" id="year" th:field="${moviereview.movie.year}" placeholder="Movie Publication Year">
+    </div>
+
+    <div>
+      <input type="text" id="genre" th:field="${moviereview.movie.genre}" placeholder="Movie Genre">
+    </div> -->
+
+    <select th:field="${moviereview.rating}">
+      <option value=""> -- Rating -- </option>
+      <option th:each="rate : ${ratings}" th:value="${rate}" th:text="${rate}">
+      </option>
+    </select>
+
+    <!-- <div>
+      <input type="text" id="rating" th:field="${moviereview.rating}" placeholder="Movie Rating">
+    </div> -->
+
+    <br>
+    <select th:field="${moviereview.status}">
+      <option value=""> -- Movie Status -- </option>
+      <option th:each="status : ${statuses}" th:value="${status}" th:text="${status.label}">
+      </option>
+    </select>
+
+    <!-- <div>
+      <input type="text" id="status" th:field="${moviereview.status}" placeholder="Movie Status">
+    </div> -->
+
+    <div>
+      <input type="text" id="review" th:field="${moviereview.comment}" placeholder="Movie Review">
+    </div>
+
+    <button type="submit" value="Save"> Save </button>
+    <button><a th:href="@{/mymovies}"> Cancel </a></button>
+
+  </form>
+</body>
+
+</html>
