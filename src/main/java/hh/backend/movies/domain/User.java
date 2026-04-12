@@ -4,9 +4,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "appuser")
 public class User {
+
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long userId;
@@ -14,18 +17,25 @@ public class User {
   private String name;
   private String username;
   private String password;
+  private String role; // USER / ADMIN
 
   // CONSTRUCTOR
   public User() {
   }
 
-  public User(String name, String username, String password) {
+  public User(String name, String username, String password, String role) {
     this.name = name;
     this.username = username;
     this.password = password;
+    this.role = role;
   }
 
   // SETTERS
+
+  public void setUserId(Long userId) {
+    this.userId = userId;
+  }
+
   public void setName(String name) {
     this.name = name;
   }
@@ -36,6 +46,10 @@ public class User {
 
   public void setPassword(String password) {
     this.password = password;
+  }
+
+  public void setRole(String role) {
+    this.role = role;
   }
 
   // GETTERS
@@ -55,10 +69,15 @@ public class User {
     return password;
   }
 
+  public String getRole() {
+    return role;
+  }
+
   // TOSTRING
   @Override
   public String toString() {
-    return "User (" + userId + "), name: " + name + ", username: " + username + ", password: " + password + ".";
+    return "User (userId: " + userId + "), name: " + name + ", username: " + username + ", password: " + password
+        + ", role: " + role + ".";
   }
 
 }
