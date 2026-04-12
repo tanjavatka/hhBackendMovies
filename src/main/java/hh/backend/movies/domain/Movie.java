@@ -1,5 +1,6 @@
 package hh.backend.movies.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,8 +14,10 @@ public class Movie {
   private Long movieId;
 
   private String title;
-  private int year;
   private String genre;
+
+  @Column(name = "publicationYear")
+  private int year;
 
   // CONSTRUCTORS
   public Movie() {
@@ -27,6 +30,10 @@ public class Movie {
   }
 
   // SETTERS
+  public void setMovieId(Long movieId) {
+    this.movieId = movieId;
+  }
+
   public void setTitle(String title) {
     this.title = title;
   }
@@ -40,7 +47,7 @@ public class Movie {
   }
 
   // GETTERS
-  public Long getId() {
+  public Long getMovieId() {
     return movieId;
   }
 
