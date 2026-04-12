@@ -7,10 +7,12 @@ import org.springframework.context.annotation.Bean;
 
 import hh.backend.movies.domain.Movie;
 import hh.backend.movies.domain.MovieRepository;
-import hh.backend.movies.domain.ReviewRepository;
+import hh.backend.movies.domain.MyMovieReview;
+import hh.backend.movies.domain.MyMovieReviewRepository;
+import hh.backend.movies.domain.RatingEnum;
 import hh.backend.movies.domain.User;
-import hh.backend.movies.domain.UserMovieReview;
 import hh.backend.movies.domain.UserRepository;
+import hh.backend.movies.domain.WatchingStatus;
 
 @SpringBootApplication
 public class MoviesApplication {
@@ -21,14 +23,14 @@ public class MoviesApplication {
 
 	@Bean
 	public CommandLineRunner createDemoRows(MovieRepository movieRepo, UserRepository userRepo,
-			ReviewRepository reviewRepo) {
+			MyMovieReviewRepository myreviewRepo) {
 		return (args) -> {
 
-			movieRepo.save(new Movie("Harry Potter", 2001, "Fiction"));
+			Movie movie = movieRepo.save(new Movie("Harry Potter", 2001, "Fiction"));
 
-			// userRepo.save(new User("Tanja", "tn", "**32*"));
+			User user = userRepo.save(new User("Tanja", "tn", "**32*", "user"));
 
-			// reviewRepo.save(new UserMovieReview(5, "watched", "super hyvä"));
+			myreviewRepo.save(new MyMovieReview(movie, RatingEnum.Five, WatchingStatus.Watched, "super hyvä"));
 		};
 	}
 }
