@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit My Review</title>
+</head>
+
+<body>
+  <h3> Edit My Review </h3>
+
+  <form th:object="${moviereview}" th:action=" @{/savereview}" action="#" method="post">
+    <input type="hidden" th:field="${moviereview.reviewId}">
+
+    <div>
+      <input type="text" id="title" th:field="${moviereview.title}" placeholder="Movie Title">
+    </div>
+
+    <div>
+      <input type="text" id="year" th:field="${moviereview.year}" placeholder="Movie Publication Year">
+    </div>
+
+    <div>
+      <input type="text" id="genre" th:field="${moviereview.genre}" placeholder="Movie Genre">
+    </div>
+
+    <div>
+      <input type="text" id="rating" th:field="${moviereview.rating}" placeholder="Movie Rating">
+    </div>
+
+    <div>
+      <input type="text" id="status" th:field="${moviereview.status}" placeholder="Movie Status">
+    </div>
+
+    <div>
+      <input type="text" id="review" th:field="${moviereview.comment}" placeholder="Movie Review">
+    </div>
+
+    <button type="submit" value="Save"> Save </button>
+    <button><a th:href="@{/mymovies}"> Cancel </a></button>
+
+  </form>
+</body>
+
+</html>
