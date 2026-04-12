@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Movies</title>
+</head>
+
+<body>
+  <h1> My Movies </h1>
+
+  <table>
+    <tr>
+      <th> Movie </th>
+      <th> Year </th>
+      <th> Genre </th>
+      <th> Rating </th>
+      <th> Status </th>
+      <th> Comment </th>
+    </tr>
+
+    <tr th:each="mymovie : ${mymovies}">
+
+      <!-- DEBUGGAUSTA
+      <td th:text="${mymovie.movie}"></td> -->
+      <!-- <td th:text="${mymovie}"></td> -->
+      <!-- <td th:text="${mymovie.movie == null}"></td> -->
+      <p th:text="${movies}"></p>
+
+      <td th:text="${mymovie.movie.title}"></td>
+      <td th:text="${mymovie.movie.year}"></td>
+      <td th:text="${mymovie.movie.genre}"></td>
+
+      <td th:text="${mymovie.rating}"></td>
+      <td th:text="${mymovie.status}"></td>
+      <td th:text="${mymovie.comment}"></td>
+
+      <td><a th:href="@{/editreview/{id} (id=${mymovie.reviewId})}"> Edit </a></td>
+      <td><a th:href="@{/deletereview/{id} (id=${mymovie.reviewId})}"> Delete </a></td>
+    </tr>
+  </table>
+
+  <a th:href="@{/addmovie}"> Add a new movie </a>
+  <a th:href="@{/addmoviereview}"> Add a new movie review </a>
+
+</body>
+
+</html>
