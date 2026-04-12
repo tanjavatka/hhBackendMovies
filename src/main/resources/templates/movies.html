@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8">
@@ -21,8 +21,13 @@
       <td th:text="${movie.Title}"></td>
       <td th:text="${movie.Year}"></td>
       <td th:text="${movie.Genre}"></td>
+      <td><a th:href="@{/editmovie/{id}(id=${movie.movieId})}"> Edit </a></td>
+      <!-- <td><a th:href="@{/delete/{id}(id=${movie.movieId})}"> Delete </a></td> -->
     </tr>
   </table>
+
+  <a th:href="@{/addmovie}"> Add a new movie </a>
+  <a th:href="@{/mymovies}"> My Movies </a>
 </body>
 
 </html>
