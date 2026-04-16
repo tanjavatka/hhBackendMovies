@@ -1,5 +1,7 @@
 package hh.backend.movies.domain;
 
+import jakarta.validation.constraints.NotBlank;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,17 +15,19 @@ public class Movie {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long movieId;
 
+  @NotBlank(message = "Title is required!") // title ei saa olla null eikä tyhjä
   private String title;
+
   private String genre;
 
   @Column(name = "publicationYear")
-  private int year;
+  private Integer year;
 
   // CONSTRUCTORS
   public Movie() {
   }
 
-  public Movie(String title, int year, String genre) {
+  public Movie(String title, Integer year, String genre) {
     this.title = title;
     this.year = year;
     this.genre = genre;
@@ -38,7 +42,7 @@ public class Movie {
     this.title = title;
   }
 
-  public void setYear(int year) {
+  public void setYear(Integer year) {
     this.year = year;
   }
 
@@ -55,7 +59,7 @@ public class Movie {
     return title;
   }
 
-  public int getYear() {
+  public Integer getYear() {
     return year;
   }
 
