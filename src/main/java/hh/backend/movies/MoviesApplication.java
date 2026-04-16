@@ -27,10 +27,13 @@ public class MoviesApplication {
 		return (args) -> {
 
 			Movie movie = movieRepo.save(new Movie("Harry Potter", 2001, "Fiction"));
+			Movie movie2 = movieRepo.save(new Movie("Rottatouille", 2008, "Animation"));
 
 			User user = userRepo.save(new User("Tanja", "tn", "**32*", "user"));
 
-			myreviewRepo.save(new MyMovieReview(movie, RatingEnum.Five, WatchingStatus.Watched, "super hyvä"));
+			myreviewRepo.save(new MyMovieReview(movie, RatingEnum.Five, WatchingStatus.Watched, "Super hyvä"));
+			myreviewRepo.save(new MyMovieReview(movie2, RatingEnum.Five, WatchingStatus.Watched, "Hauska"));
+
 		};
 	}
 }
