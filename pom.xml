@@ -52,6 +52,12 @@
 			<optional>true</optional>
 		</dependency>
 
+		<!-- VALIDATION -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+
 		<!-- DATABASE: H2-CONSOLE -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -65,6 +71,17 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-h2console</artifactId>
+		</dependency>
+
+		<!-- SECURITY -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+	
+		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity6</artifactId>
 		</dependency>
 
 		<!-- TESTS -->
