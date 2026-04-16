@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class MyMovieReview {
@@ -20,6 +21,7 @@ public class MyMovieReview {
   @JoinColumn(name = "userId")
   private User user;
 
+  @NotNull(message = "Required - Select a movie!")
   @ManyToOne
   @JoinColumn(name = "movieId")
   private Movie movie;
@@ -27,8 +29,7 @@ public class MyMovieReview {
   @Enumerated(EnumType.STRING)
   private RatingEnum rating; // 0-5
 
-  // private int rating;
-
+  @NotNull(message = "Reguired - Select movie status!")
   @Enumerated(EnumType.STRING)
   private WatchingStatus status; // watched / not watched
 
