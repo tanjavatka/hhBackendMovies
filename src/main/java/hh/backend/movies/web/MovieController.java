@@ -69,7 +69,7 @@ public class MovieController {
 
     // tarkistetaan onko elokuvalla arvosteluja
     if (reviewRepository.existsByMovie_MovieId(movieId)) {
-      redirectAttributes.addFlashAttribute("error", "Cannot delete movie with reviews");
+      redirectAttributes.addFlashAttribute("error", "Can't delete movie with reviews");
       return "redirect:/movies";
     }
 
