@@ -1,5 +1,7 @@
 package hh.backend.movies.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -18,6 +20,7 @@ public class MyMovieReview {
   private Long reviewId;
 
   @ManyToOne
+  @JsonIgnore
   @JoinColumn(name = "userId")
   private User user;
 
