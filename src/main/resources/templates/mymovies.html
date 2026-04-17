@@ -22,14 +22,15 @@
 
 <body>
   <div class="container mt-3">
-    <div>
-      <h1> <span sec:authentication="name"></span> Movies </h1>
-    </div>
+    <div style="display:flex; justify-content: space-between; align-items: center;">
 
-    <div class="col-md-4 text-right">
-      <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Sign Out" class=" btn btn-info btn-sm align-right" />
-      </form>
+      <h1> <span sec:authentication="name" class="username-color"></span> 's Movie Reviews </h1>
+
+      <div>
+        <form th:action="@{/logout}" method="post">
+          <button type="submit" class=" btn btn-info btn-sm align-right"> Sign out </button>
+        </form>
+      </div>
     </div>
 
     <table class="table table-hover">
@@ -48,10 +49,6 @@
 
       <tr th:each="mymovie : ${mymovies}">
 
-        <!-- DEBUGGAUSTA
-      <td th:text="${mymovie.movie}"></td> -->
-        <!-- <td th:text="${mymovie}"></td> -->
-        <!-- <td th:text="${mymovie.movie == null}"></td> -->
         <p th:text="${movies}"></p>
 
         <td th:text="${mymovie.movie.title}"></td>
@@ -75,9 +72,9 @@
       </tr>
     </table>
 
-    <a th:href="@{/addmoviereview}" class="btn btn-info btn-sm"> Add a new movie review </a>
-    <a th:href="@{/addmovie}" class="btn btn-info btn-sm"> Add a new movie </a>
     <a th:href="@{/movies}" class="btn btn-info btn-sm"> Movies </a>
+    <a th:href="@{/addmoviereview}" class="btn btn-info btn-sm"> + Add a new movie review </a>
+    <a th:href="@{/addmovie}" class="btn btn-info btn-sm"> + Add a new movie </a>
 
   </div>
 </body>
