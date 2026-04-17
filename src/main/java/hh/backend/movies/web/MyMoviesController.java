@@ -28,7 +28,7 @@ public class MyMoviesController {
   }
 
   // Listaa kaikki arvostelut elokuvan tietoineen
-  @GetMapping({ "/mymovies", "/" })
+  @GetMapping("/mymovies")
   public String getMyMovies(Model model) {
     model.addAttribute("mymovies", myMovieRepo.findAll());
     return "mymovies"; // mymovies.html
