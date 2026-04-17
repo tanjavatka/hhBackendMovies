@@ -22,7 +22,32 @@
 
 <body>
   <div class="container mt-3">
-    <h1> Movies </h1>
+    <div style="display:flex; justify-content: space-between; align-items: center;">
+      <h1> Movies </h1>
+
+      <div>
+        <div sec:authorize="isAnonymous()">
+          <a href="/login" class=" btn btn-info btn-sm align-right">Sign in</a>
+        </div>
+
+        <div sec:authorize="isAuthenticated()">
+          <form th:action="@{/logout}" method="post">
+            <button type="submit" class=" btn btn-info btn-sm align-right">Sign out</button>
+          </form>
+        </div>
+      </div>
+
+      <div th:if="${error}" class="d-flex justify-content-center">
+        <div class="alert alert-danger text-center py-1">
+          <span th:text="${error}"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- text-danger fw-bold py-0 -->
+    <!-- <div th:if="${error}" class="alert alert-danger py-0">
+      <p th:text="${error}"></p>
+    </div> -->
 
     <table class="table table-hover">
       <thead class="table-info">
@@ -31,6 +56,7 @@
           <th> Year </th>
           <th> Genre </th>
           <th></th>
+          <th></th>
         </tr>
       </thead>
 
@@ -38,15 +64,25 @@
         <td th:text="${movie.Title}"></td>
         <td th:text="${movie.Year}"></td>
         <td th:text="${movie.Genre}"></td>
-        <td><a th:href="@{/editmovie/{id}(id=${movie.movieId})}" class="btn btn-info btn-sm custom-btn"> Edit </a></td>
+        <td sec:authorize="hasAnyRole('USER','ADMIN')">
+          <a th:href="@{/editmovie/{id}(id=${movie.movieId})}" class="btn btn-info btn-sm custom-btn">
+            Edit
+          </a>
+        </td>
         <!-- <td><a th:href="@{/addmoviereview/{id}(id=${movie.movieId})}"> Add new review </a></td> -->
-        <!-- <td><a th:href="@{/delete/{id}(id=${movie.movieId})}"> Delete </a></td> -->
+        <td sec:authorize="hasRole('ADMIN')">
+          <a th:href="@{/deletemovie/{id}(id=${movie.movieId})}" class="btn btn-danger btn-sm custom-btn">
+            Delete
+          </a>
+        </td>
       </tr>
     </table>
 
-    <a th:href="@{/addmovie}" class=" btn btn-info btn-sm"> Add a new movie </a>
-    <a th:href="@{/mymovies}" class="btn btn-info btn-sm"> My Movies </a>
-    <a th:href="@{/addmoviereview}" class="btn btn-info btn-sm"> Add a new movie review </a>
+    <div sec:authorize="hasAnyRole('USER','ADMIN')">
+      <a th:href="@{/addmovie}" class=" btn btn-info btn-sm"> Add a new movie </a>
+      <a th:href="@{/mymovies}" class="btn btn-info btn-sm"> My Movies </a>
+      <a th:href="@{/addmoviereview}" class="btn btn-info btn-sm"> Add a new movie review </a>
+    </div>
   </div>
 </body>
 
