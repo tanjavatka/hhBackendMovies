@@ -29,9 +29,9 @@
       <input type="hidden" th:field="${movie.movieId}">
 
       <div>
-        <input type="text" id="title" th:field="${movie.title}" placeholder="Movie Title">
         <div class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">
         </div>
+        <input type="text" id="title" th:field="${movie.title}" placeholder="Movie Title">
       </div>
 
       <div>
