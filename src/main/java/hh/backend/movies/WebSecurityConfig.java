@@ -17,8 +17,11 @@ public class WebSecurityConfig {
         .authorizeHttpRequests(authorize -> authorize
             // nämä sivut ei tarvitse loginia näkyäkseen. - "/style.css"
             .requestMatchers("/", "/movies", "/register", "/**/*.css").permitAll() // Enable css when logged out
+            // vain kirjautuneet
+            .requestMatchers("/mymovies/**").authenticated()
+            // toimii vain admin käyttäjälle
             .requestMatchers("/deletemovie/**").hasRole("ADMIN")
-            // .requestMatchers("/deleteUser/**").hasRole("ADMIN")
+            // .requestMatchers("/deleteUser/**").hasRole("ADMIN") -> ei toiminnassa vielä
             .anyRequest().authenticated())
         .formLogin(formlogin -> formlogin
             .defaultSuccessUrl("/mymovies", true)

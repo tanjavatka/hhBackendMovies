@@ -55,20 +55,22 @@
         <td th:text="${mymovie.movie.year}"></td>
         <td th:text="${mymovie.movie.genre}"></td>
 
-        <td th:text="${mymovie.rating}"></td>
         <td th:text="${mymovie.status}"></td>
+        <td th:text="${mymovie.rating}"></td>
         <td th:text="${mymovie.comment}"></td>
 
-        <td>
+        <td th:if="${mymovie.user != null and mymovie.user.username == #authentication.name}">
           <a th:href="@{/editreview/{id} (id=${mymovie.reviewId})}" class="btn btn-info btn-sm custom-btn">
             Edit
           </a>
         </td>
-        <td>
+
+        <td th:if="${mymovie.user != null and mymovie.user.username == #authentication.name}">
           <a th:href="@{/deletereview/{id} (id=${mymovie.reviewId})}" class="btn btn-danger btn-sm custom-btn">
             Delete
           </a>
         </td>
+
       </tr>
     </table>
 

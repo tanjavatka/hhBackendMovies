@@ -42,12 +42,6 @@
 
           <br>
 
-          <select th:field="*{rating}" class="form-select form-select-sm">
-            <option value=""> -- Rating -- </option>
-            <option th:each="rate : ${ratings}" th:value="${rate}" th:text="${rate}">
-            </option>
-          </select>
-
           <!-- Error viesti, jos status puuttuu!  -->
           <div class="text-danger" th:if="${#fields.hasErrors('status')}" th:errors="*{status}">
           </div>
@@ -55,6 +49,12 @@
           <select th:field="*{status}" class="form-select form-select-sm">
             <option value=""> -- Movie Status -- </option>
             <option th:each="status : ${statuses}" th:value="${status}" th:text="${status.label}">
+            </option>
+          </select>
+
+          <select th:field="*{rating}" class="form-select form-select-sm">
+            <option value=""> -- Rating -- </option>
+            <option th:each="rate : ${ratings}" th:value="${rate}" th:text="${rate}">
             </option>
           </select>
 

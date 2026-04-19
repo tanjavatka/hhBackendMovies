@@ -39,8 +39,8 @@ public class MoviesApplication {
 			User user = userRepo.save(new User("User", "user", (passwordEncoder.encode("user123")), "ROLE_USER"));
 			User admin = userRepo.save(new User("Admin", "admin", (passwordEncoder.encode("admin123")), "ROLE_ADMIN"));
 
-			myreviewRepo.save(new MyMovieReview(movie, RatingEnum.Five, WatchingStatus.Watched, "Super hyvä"));
-			myreviewRepo.save(new MyMovieReview(movie2, RatingEnum.Five, WatchingStatus.Watched, "Hauska"));
+			myreviewRepo.save(new MyMovieReview(user, movie, RatingEnum.Five, WatchingStatus.Watched, "Super hyvä"));
+			myreviewRepo.save(new MyMovieReview(admin, movie2, RatingEnum.Five, WatchingStatus.Watched, "Hauska"));
 
 		};
 	}

@@ -63,12 +63,15 @@ public class MyMoviesController {
     MyMovieReview review = myMovieRepo.findById(reviewId).orElse(null);
 
     // tarkistetaan onko käyttäjän oma arvostelu
-    if (review == null || !review.getUser().getUsername().equals(principal.getName())) {
+    if (review == null ||
+        review.getUser() == null ||
+        !review.getUser().getUsername().equals(principal.getName())) {
+
       return "redirect:/mymovies"; // mymovies.html
       // palaa mymovies sivulle sillä ei oikeutta muokata
     }
 
-    model.addAttribute("moviereview", myMovieRepo.findById(reviewId).orElse(null));
+    model.addAttribute("moviereview", review);
     model.addAttribute("ratings", RatingEnum.values());
     model.addAttribute("statuses", WatchingStatus.values());
 

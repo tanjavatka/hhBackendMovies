@@ -1,5 +1,6 @@
 package hh.backend.movies.web;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -65,6 +66,7 @@ public class MovieController {
 
   // delete movie by id
   @GetMapping("/deletemovie/{id}")
+  @PreAuthorize("hasRole('ADMIN')")
   public String deleteMovie(@PathVariable("id") Long movieId, RedirectAttributes redirectAttributes) {
 
     // tarkistetaan onko elokuvalla arvosteluja
