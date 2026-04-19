@@ -2,6 +2,7 @@ package hh.backend.movies;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,6 +15,9 @@ public class WebSecurityConfig {
   @Bean
   public SecurityFilterChain configure(HttpSecurity http) throws Exception {
     http
+        // POST ja DELETE ei kaadu
+        .csrf(csrf -> csrf.disable())
+
         .authorizeHttpRequests(authorize -> authorize
             // nämä sivut ei tarvitse loginia näkyäkseen. - "/style.css"
             .requestMatchers("/", "/movies", "/register", "/**/*.css").permitAll() // Enable css when logged out
@@ -22,6 +26,11 @@ public class WebSecurityConfig {
             // toimii vain admin käyttäjälle
             .requestMatchers("/deletemovie/**").hasRole("ADMIN")
             // .requestMatchers("/deleteUser/**").hasRole("ADMIN") -> ei toiminnassa vielä
+
+            // REST kaikille GET endpointeille, jotka alkaa /api -> ei vaadi kirjautumista
+            .requestMatchers(HttpMethod.GET, "/api/**").permitAll()
+            // muut tarvitsevat tunnistautumisen
+            .requestMatchers("/api/**").authenticated()
             .anyRequest().authenticated())
         .formLogin(formlogin -> formlogin
             .defaultSuccessUrl("/mymovies", true)
