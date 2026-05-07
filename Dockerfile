@@ -1,4 +1,4 @@
-# PROJEKTI RAHTIIN: H2-databasen kanssa ->
+# PROJEKTI RAHTIIN: H2-databasen / ulkoisen DB kanssa ->
 # Build-vaihe
 FROM eclipse-temurin:17-jdk-focal AS builder
 
